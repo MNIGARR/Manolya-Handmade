@@ -36,10 +36,11 @@ export default function Navbar({ cartCount, onOpenCart, currentUser, onLogout }:
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 flex-shrink-0">
           <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
-            <img src="https://via.placeholder.com/40" alt="Logo" />
+            <img src='../assets/manolya-horizontal-logo.png' alt="Logo" />
           </div>
           <span className="text-lg md:text-xl font-semibold text-manolya-purple">Manolya Handmade</span>
         </Link>
+        
 
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-6 text-gray-700">
