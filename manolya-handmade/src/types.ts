@@ -6,7 +6,11 @@ export interface Product {
   imageUrl: string;
 }
 
-// Add this new type for the cart
 export interface CartItem extends Product {
   quantity: number;
+}
+
+export interface User {
+  name: string;
+  email: string;
 }
