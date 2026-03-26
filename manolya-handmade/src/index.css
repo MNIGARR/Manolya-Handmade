@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply text-gray-900;
+  /* Add the subtle light gradient background seen in the design */
+  background: linear-gradient(180deg, #FDF4FF 0%, #FFFFFF 100%);
+  font-family: sans-serif; /* A clean sans-serif font */
+}
