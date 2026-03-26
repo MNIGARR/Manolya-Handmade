@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { CartItem } from '../types';
 
 interface Props {
@@ -73,9 +74,12 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onRemove, onUpd
               <span>Total:</span>
               <span>${total.toFixed(2)}</span>
             </div>
-            <button className="w-full bg-manolya-purple text-white py-3 rounded-md hover:bg-purple-700 transition font-medium shadow-sm">
-              Checkout
-            </button>
+            <Link
+              to="/checkout"
+              onClick={onClose}
+              className="block w-full text-center bg-manolya-purple text-white py-3 rounded-md hover:bg-purple-700 transition font-medium shadow-sm"
+            >              Checkout
+            </Link>
           </div>
         )}
       </div>

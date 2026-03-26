@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import type { User } from '../types';
+import logoImage from '../assets/manolya-horizontal-logo.png';
 
 interface Props {
   cartCount: number;
@@ -34,11 +35,8 @@ export default function Navbar({ cartCount, onOpenCart, currentUser, onLogout }:
       <nav className="container mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center overflow-hidden">
-            <img src='../assets/manolya-horizontal-logo.png' alt="Logo" />
-          </div>
-          <span className="text-lg md:text-xl font-semibold text-manolya-purple">Manolya Handmade</span>
+        <Link to="/" className="flex items-center gap-3 flex-shrink-0">
+          <img src={logoImage} alt="Manolya Handmade logo" className="h-9 w-auto max-w-[150px] object-contain" />
         </Link>
         
 

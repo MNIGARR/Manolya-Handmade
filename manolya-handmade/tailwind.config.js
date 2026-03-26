@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Define the primary purple color from the design
-        'manolya-purple': '#8A2BE2', 
+        // Pastel pink palette aligned with logo
+        'manolya-purple': '#B85C7B',
+        'manolya-purple-dark': '#9F4A69',
+        'manolya-purple-soft': '#F8E6EE',
       },
     },
   },

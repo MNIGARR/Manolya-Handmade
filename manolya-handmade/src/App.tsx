@@ -9,6 +9,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Checkout from './pages/Checkout';
 import type { Product, CartItem, User } from './types';
 
 export default function App() {
@@ -93,6 +94,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route path="/register" element={<Register onLogin={handleLogin} />} />
+            <Route path="/checkout" element={<Checkout cartItems={cartItems} currentUser={currentUser} />} />
           </Routes>
         </main>
 
