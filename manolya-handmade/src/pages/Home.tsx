@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import { products } from '../data';
 import type { Product } from '../types';
+import fullImage from '../assets/full.avif';
 
 export default function Home({ onAddToCart }: { onAddToCart: (product: Product) => void }) {
   return (
@@ -28,22 +29,12 @@ export default function Home({ onAddToCart }: { onAddToCart: (product: Product) 
           </div>
         </div>
 
-        <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 max-w-md mx-auto w-full">
-          <div className="text-center mb-6">
-            <img
-              src="https://via.placeholder.com/80"
-              alt="Instagram Profile"
-              className="rounded-full mx-auto mb-4 border-2 border-manolya-purple p-0.5"
-            />
-            <h2 className="font-bold text-lg">manolya_handmade_</h2>
-            <p className="text-gray-500 text-sm">@manolya_handmade_</p>
-          </div>
-          <button className="w-full bg-gray-100 text-gray-800 py-3 rounded-lg font-semibold mb-6 hover:bg-gray-200 transition">
-            Message
-          </button>
-          <p className="text-sm text-gray-700 leading-relaxed text-center">
-            ✨Sevinci almaq olmur amma aksesuar alaraq<br />ozunu sevindire bilersen✨
-          </p>
+        <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 max-w-md mx-auto w-full">
+          <img
+            src={fullImage}
+            alt="Manolya Handmade Collection"
+            className="w-full h-auto object-cover"
+          />
         </div>
       </section>
 

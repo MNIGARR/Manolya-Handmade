@@ -4,6 +4,7 @@ export interface Product {
   description: string;
   price: number;
   imageUrl: string;
+  category: string;
 }
 
 // Add this new type for the cart
