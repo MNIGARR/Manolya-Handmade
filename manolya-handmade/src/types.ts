@@ -10,3 +10,9 @@ export interface Product {
 export interface CartItem extends Product {
   quantity: number;
 }
+
+// New: for authentication
+export interface User {
+  name: string;
+  email: string;
+}

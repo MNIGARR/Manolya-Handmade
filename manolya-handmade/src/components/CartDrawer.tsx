@@ -5,17 +5,17 @@ interface Props {
   onClose: () => void;
   cartItems: CartItem[];
   onRemove: (id: number) => void;
+  onUpdateQuantity: (id: number, delta: number) => void;
 }
 
-export default function CartDrawer({ isOpen, onClose, cartItems, onRemove }: Props) {
-  // Calculate total price
+export default function CartDrawer({ isOpen, onClose, cartItems, onRemove, onUpdateQuantity }: Props) {
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
     <>
       {/* Dark background overlay */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity"
           onClick={onClose}
         ></div>
@@ -23,7 +23,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onRemove }: Pro
 
       {/* Side drawer */}
       <div className={`fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-        
+
         {/* Cart Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <h2 className="text-xl font-bold text-manolya-purple">Your Cart</h2>
@@ -37,13 +37,30 @@ export default function CartDrawer({ isOpen, onClose, cartItems, onRemove }: Pro
           ) : (
             cartItems.map((item) => (
               <div key={item.id} className="flex gap-4 border-b border-gray-100 pb-4">
-                <img src={item.imageUrl} alt={item.name} className="w-20 h-20 object-cover rounded-md" />
-                <div className="flex-grow">
-                  <h3 className="font-semibold text-gray-800 text-sm">{item.name}</h3>
-                  <p className="text-gray-500 text-sm">Qty: {item.quantity}</p>
+                <img src={item.imageUrl} alt={item.name} className="w-20 h-20 object-cover rounded-md flex-shrink-0" />
+                <div className="flex-grow min-w-0">
+                  <h3 className="font-semibold text-gray-800 text-sm truncate">{item.name}</h3>
                   <p className="font-bold text-manolya-purple mt-1">${(item.price * item.quantity).toFixed(2)}</p>
+                  {/* Quantity Controls */}
+                  <div className="flex items-center gap-2 mt-2">
+                    <button
+                      onClick={() => onUpdateQuantity(item.id, -1)}
+                      className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition font-bold"
+                      aria-label="Decrease quantity"
+                    >
+                      −
+                    </button>
+                    <span className="w-6 text-center font-semibold text-gray-800 text-sm">{item.quantity}</span>
+                    <button
+                      onClick={() => onUpdateQuantity(item.id, 1)}
+                      className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition font-bold"
+                      aria-label="Increase quantity"
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-                <button onClick={() => onRemove(item.id)} className="text-red-400 hover:text-red-600 text-sm self-start">Remove</button>
+                <button onClick={() => onRemove(item.id)} className="text-red-400 hover:text-red-600 text-sm self-start flex-shrink-0">Remove</button>
               </div>
             ))
           )}
