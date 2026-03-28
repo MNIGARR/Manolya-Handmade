@@ -4,7 +4,13 @@ import { products } from '../data';
 import type { Product } from '../types';
 import fullImage from '../assets/full.avif';
 
-export default function Home({ onAddToCart }: { onAddToCart: (product: Product) => void }) {
+interface Props {
+  onAddToCart: (product: Product) => void;
+  favouriteIds: number[];
+  onToggleFavourite: (id: number) => void;
+}
+
+export default function Home({ onAddToCart, favouriteIds, onToggleFavourite }: Props) {
   return (
     <div>
       {/* Hero Section */}
@@ -29,12 +35,11 @@ export default function Home({ onAddToCart }: { onAddToCart: (product: Product) 
           </div>
         </div>
 
-         <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 max-w-md mx-auto w-full">
-          <img
+        <div className="rounded-3xl overflow-hidden shadow-2xl shadow-manolya-purple/20 border border-white/70 max-w-xl mx-auto w-full">          <img
             src={fullImage}
             alt="Manolya Handmade Collection"
-            className="w-full h-auto object-cover"
-          />
+            className="w-full h-[300px] md:h-[420px] object-cover"
+        />
         </div>
       </section>
 
@@ -45,7 +50,7 @@ export default function Home({ onAddToCart }: { onAddToCart: (product: Product) 
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16">
           {products.slice(0, 3).map(product => (
-            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
+            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} isFavourite={favouriteIds.includes(product.id)} onToggleFavourite={onToggleFavourite} />
           ))}
         </div>
         <div className="text-center">

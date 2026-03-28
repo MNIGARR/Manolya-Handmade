@@ -5,8 +5,13 @@ import { useState, useMemo } from 'react';
 
 const ALL_CATEGORY = 'All';
 
-export default function Shop({ onAddToCart }: { onAddToCart: (product: Product) => void }) {
+interface Props {
+  onAddToCart: (product: Product) => void;
+  favouriteIds: number[];
+  onToggleFavourite: (id: number) => void;
+}
 
+export default function Shop({ onAddToCart, favouriteIds, onToggleFavourite }: Props) {
     const categories = useMemo(
     () => [ALL_CATEGORY, ...Array.from(new Set(products.map(p => p.category)))],
     []
@@ -42,7 +47,7 @@ export default function Shop({ onAddToCart }: { onAddToCart: (product: Product) 
       {filteredProducts.length > 0 ? (
         <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">
           {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
+            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} isFavourite={favouriteIds.includes(product.id)} onToggleFavourite={onToggleFavourite} />
           ))}
         </div>
       ) : (

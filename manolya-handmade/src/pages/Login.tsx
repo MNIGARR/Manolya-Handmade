@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import type { User } from '../types';
 
 export default function Login({ onLogin }: { onLogin: (user: User) => void }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  // Redirect target passed via navigation state (e.g. from protected Checkout)
+  const redirectTo = (location.state as { redirect?: string } | null)?.redirect ?? '/';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,7 +24,7 @@ export default function Login({ onLogin }: { onLogin: (user: User) => void }) {
 
     if (found) {
       onLogin({ name: found.name, email: found.email });
-      navigate('/');
+      navigate(redirectTo);
     } else {
       setError('Invalid email or password. Please try again.');
     }

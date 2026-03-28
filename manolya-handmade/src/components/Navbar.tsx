@@ -8,6 +8,7 @@ interface Props {
   onOpenCart: () => void;
   currentUser: User | null;
   onLogout: () => void;
+  favouriteCount: number;
 }
 
 const CartIcon = () => (
@@ -16,7 +17,7 @@ const CartIcon = () => (
   </svg>
 );
 
-export default function Navbar({ cartCount, onOpenCart, currentUser, onLogout }: Props) {
+export default function Navbar({ cartCount, onOpenCart, currentUser, onLogout, favouriteCount }: Props) {
   const location = useLocation();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -50,6 +51,22 @@ export default function Navbar({ cartCount, onOpenCart, currentUser, onLogout }:
 
         {/* Desktop Right Side */}
         <div className="hidden md:flex items-center gap-4">
+          {/* Favourites Icon */}
+          <Link
+            to="/favourites"
+            className="relative"
+            aria-label="View favourites"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill={favouriteCount > 0 ? 'currentColor' : 'none'} viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={`w-6 h-6 transition ${favouriteCount > 0 ? 'text-manolya-purple' : 'text-gray-600 hover:text-manolya-purple'}`}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+            </svg>
+            {favouriteCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-manolya-purple text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                {favouriteCount}
+              </span>
+            )}
+          </Link>
+
           {/* Cart Icon */}
           <button
             type="button"
@@ -125,6 +142,12 @@ export default function Navbar({ cartCount, onOpenCart, currentUser, onLogout }:
           <Link to="/shop" className={`py-2.5 border-b border-gray-50 ${isActive('/shop')}`} onClick={() => setMenuOpen(false)}>Shop</Link>
           <Link to="/about" className={`py-2.5 border-b border-gray-50 ${isActive('/about')}`} onClick={() => setMenuOpen(false)}>About</Link>
           <Link to="/contact" className={`py-2.5 border-b border-gray-50 ${isActive('/contact')}`} onClick={() => setMenuOpen(false)}>Contact</Link>
+          <Link to="/favourites" className={`py-2.5 border-b border-gray-50 flex items-center gap-2 ${isActive('/favourites')}`} onClick={() => setMenuOpen(false)}>
+            Favourites
+            {favouriteCount > 0 && (
+              <span className="bg-manolya-purple text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">{favouriteCount}</span>
+            )}
+          </Link>
           <div className="pt-3">
             {currentUser ? (
               <div className="flex items-center justify-between">

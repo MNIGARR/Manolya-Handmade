@@ -10,19 +10,26 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Checkout from './pages/Checkout';
+import Favourites from './pages/Favourites';
+import ProductDetail from './pages/ProductDetail';
 import type { Product, CartItem, User } from './types';
 
 export default function App() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [favouriteIds, setFavouriteIds] = useState<number[]>([]);
 
-  // Load the logged-in user from localStorage when the app first mounts
+  // Load the logged-in user and favourites from localStorage when the app first mounts
   useEffect(() => {
     const saved = localStorage.getItem('manolya_user');
     if (saved) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrentUser(JSON.parse(saved));
+    }
+    const savedFavourites = localStorage.getItem('manolya_favourites');
+    if (savedFavourites) {
+      setFavouriteIds(JSON.parse(savedFavourites));
     }
   }, []);
 
@@ -66,6 +73,15 @@ export default function App() {
     localStorage.removeItem('manolya_user');
   };
 
+  // Toggle a product in/out of favourites and persist to localStorage
+  const handleToggleFavourite = (id: number) => {
+    setFavouriteIds(prev => {
+      const updated = prev.includes(id) ? prev.filter(fid => fid !== id) : [...prev, id];
+      localStorage.setItem('manolya_favourites', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
   const totalCartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
@@ -76,6 +92,7 @@ export default function App() {
           onOpenCart={() => setIsCartOpen(true)}
           currentUser={currentUser}
           onLogout={handleLogout}
+          favouriteCount={favouriteIds.length}
         />
 
         <CartDrawer
@@ -88,13 +105,15 @@ export default function App() {
 
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<Home onAddToCart={handleAddToCart} />} />
-            <Route path="/shop" element={<Shop onAddToCart={handleAddToCart} />} />
+             <Route path="/" element={<Home onAddToCart={handleAddToCart} favouriteIds={favouriteIds} onToggleFavourite={handleToggleFavourite} />} />
+            <Route path="/shop" element={<Shop onAddToCart={handleAddToCart} favouriteIds={favouriteIds} onToggleFavourite={handleToggleFavourite} />} />
+            <Route path="/product/:id" element={<ProductDetail onAddToCart={handleAddToCart} favouriteIds={favouriteIds} onToggleFavourite={handleToggleFavourite} />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route path="/register" element={<Register onLogin={handleLogin} />} />
             <Route path="/checkout" element={<Checkout cartItems={cartItems} currentUser={currentUser} />} />
+            <Route path="/favourites" element={<Favourites favouriteIds={favouriteIds} onToggleFavourite={handleToggleFavourite} onAddToCart={handleAddToCart} />} />
           </Routes>
         </main>
 

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { CartItem, User } from '../types';
 
 interface Props {
@@ -6,6 +8,16 @@ interface Props {
 }
 
 export default function Checkout({ cartItems, currentUser }: Props) {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!currentUser) {
+      navigate('/login', { state: { redirect: '/checkout' } });
+    }
+  }, [currentUser, navigate]);
+
+  if (!currentUser) return null;
+
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const shipping = subtotal > 0 ? 4.99 : 0;
   const total = subtotal + shipping;
