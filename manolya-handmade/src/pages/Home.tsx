@@ -4,7 +4,13 @@ import { products } from '../data';
 import type { Product } from '../types';
 import fullImage from '../assets/full.avif';
 
-export default function Home({ onAddToCart }: { onAddToCart: (product: Product) => void }) {
+interface Props {
+  onAddToCart: (product: Product) => void;
+  favouriteIds: number[];
+  onToggleFavourite: (id: number) => void;
+}
+
+export default function Home({ onAddToCart, favouriteIds, onToggleFavourite }: Props) {
   return (
     <div>
       {/* Hero Section */}
@@ -45,7 +51,7 @@ export default function Home({ onAddToCart }: { onAddToCart: (product: Product) 
         </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16">
           {products.slice(0, 3).map(product => (
-            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} />
+            <ProductCard key={product.id} product={product} onAddToCart={onAddToCart} isFavourite={favouriteIds.includes(product.id)} onToggleFavourite={onToggleFavourite} />
           ))}
         </div>
         <div className="text-center">
