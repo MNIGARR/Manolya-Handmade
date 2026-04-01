@@ -2,19 +2,37 @@ import { Link } from 'react-router-dom';
 
 const values = [
   {
-    icon: '✋',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-manolya-purple">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+      </svg>
+    ),
     title: 'Handcrafted with Love',
     description:
       'Every single piece is made by hand, bead by bead, ensuring each creation is unique and full of care.',
   },
   {
-    icon: '🌈',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#E07A5F]">
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+        <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+      </svg>
+    ),
     title: 'Color & Joy',
     description:
       'We believe in the power of color to uplift your day. Our collections celebrate vibrancy, personality, and self-expression.',
   },
   {
-    icon: '🌍',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[#3D5A80]">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        <path d="M2 12h20" />
+      </svg>
+    ),
     title: 'Supporting Small',
     description:
       'When you shop with us, you directly support an independent artisan and the tradition of handmade craftsmanship.',
@@ -58,7 +76,6 @@ export default function About() {
             Made with Hands, <br className="hidden md:block" />
             <span className="text-manolya-purple relative">
               Gifted with Heart
-              {/* Subtle underline decoration */}
               <svg className="absolute w-full h-3 -bottom-1 left-0 text-manolya-purple/30" viewBox="0 0 100 10" preserveAspectRatio="none">
                 <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="transparent" />
               </svg>
@@ -89,19 +106,35 @@ export default function About() {
             </p>
           </div>
           
-          {/* Decorative grid with animations */}
-          <div className="grid grid-cols-2 gap-6 relative">
-            <div className="bg-[#FFF0F6] rounded-3xl h-56 flex items-center justify-center text-6xl shadow-sm hover:scale-105 hover:-rotate-6 transition-transform duration-500 cursor-default">
-              🌸
+          {/* Aesthetic Image Grid */}
+          <div className="grid grid-cols-2 gap-4 md:gap-6 relative">
+            <div className="rounded-3xl h-48 md:h-56 shadow-md hover:scale-105 hover:-rotate-2 transition-transform duration-500 overflow-hidden bg-gray-100">
+              <img 
+                src="https://images.unsplash.com/photo-1596496181848-3091d4878b24?auto=format&fit=crop&q=80&w=600" 
+                alt="Colorful beads" 
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="bg-[#EDE4FF] rounded-3xl h-56 flex items-center justify-center text-6xl shadow-sm mt-12 hover:scale-105 hover:rotate-6 transition-transform duration-500 cursor-default">
-              💜
+            <div className="rounded-3xl h-48 md:h-56 shadow-md mt-8 md:mt-12 hover:scale-105 hover:rotate-2 transition-transform duration-500 overflow-hidden bg-gray-100">
+              <img 
+                src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?auto=format&fit=crop&q=80&w=600" 
+                alt="Handmade jewelry" 
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="bg-[#E0F4FF] rounded-3xl h-56 flex items-center justify-center text-6xl shadow-sm hover:scale-105 hover:-rotate-3 transition-transform duration-500 cursor-default">
-              🪩
+            <div className="rounded-3xl h-48 md:h-56 shadow-md hover:scale-105 hover:-rotate-2 transition-transform duration-500 overflow-hidden bg-gray-100">
+              <img 
+                src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=600" 
+                alt="Aesthetic pearls" 
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="bg-[#FFF4E6] rounded-3xl h-56 flex items-center justify-center text-6xl shadow-sm -mt-12 hover:scale-105 hover:rotate-3 transition-transform duration-500 cursor-default">
-              ✨
+            <div className="rounded-3xl h-48 md:h-56 shadow-md -mt-8 md:-mt-12 hover:scale-105 hover:rotate-2 transition-transform duration-500 overflow-hidden bg-gray-100">
+              <img 
+                src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80&w=600" 
+                alt="Finished piece" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
@@ -123,7 +156,7 @@ export default function About() {
                 key={value.title}
                 className="group bg-white rounded-[2.5rem] p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-50 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 text-center"
               >
-                <div className="w-20 h-20 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform duration-500">
+                <div className="w-20 h-20 mx-auto bg-gray-50/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-purple-50 transition-all duration-500">
                   {value.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
@@ -145,10 +178,9 @@ export default function About() {
           </div>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 relative">
-            {/* Optional connecting line for larger screens */}
             <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-transparent via-[#F8E6EE] to-transparent z-0"></div>
             
-            {steps.map((s, idx) => (
+            {steps.map((s) => (
               <div key={s.step} className="relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left group">
                 <div className="text-7xl font-black text-[#F8E6EE] select-none leading-none mb-6 group-hover:text-manolya-purple/20 transition-colors duration-500">
                   {s.step}
@@ -163,7 +195,6 @@ export default function About() {
 
       {/* CTA Section */}
       <section className="py-24 px-6 bg-gradient-to-r from-manolya-purple to-purple-700 relative overflow-hidden">
-        {/* Decorative background blur objects */}
         <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 bg-black/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
         
