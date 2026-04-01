@@ -46,18 +46,25 @@ const steps = [
 
 export default function About() {
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden font-sans">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#FFF0F6] via-[#F8E6EE] to-[#EDE4FF] py-24 px-6">
-        <div className="container mx-auto max-w-4xl text-center">
-          <span className="inline-block text-manolya-purple font-semibold tracking-widest uppercase text-sm mb-4">
+      <section className="relative bg-gradient-to-br from-[#FFF0F6] via-[#F8E6EE] to-[#EDE4FF] py-32 px-6">
+        <div className="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>
+        <div className="container relative mx-auto max-w-4xl text-center z-10">
+          <span className="inline-block bg-white/60 backdrop-blur-md px-6 py-2 rounded-full text-manolya-purple font-bold tracking-widest uppercase text-xs mb-6 shadow-sm border border-white/50">
             Our Story
           </span>
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Made with Hands,{' '}
-            <span className="text-manolya-purple">Gifted with Heart</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
+            Made with Hands, <br className="hidden md:block" />
+            <span className="text-manolya-purple relative">
+              Gifted with Heart
+              {/* Subtle underline decoration */}
+              <svg className="absolute w-full h-3 -bottom-1 left-0 text-manolya-purple/30" viewBox="0 0 100 10" preserveAspectRatio="none">
+                <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="3" fill="transparent" />
+              </svg>
+            </span>
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-light mt-8">
             Manolya Handmade started with a simple passion for creativity and color — turning tiny
             beads into wearable art that tells a story.
           </p>
@@ -65,11 +72,12 @@ export default function About() {
       </section>
 
       {/* Story Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-5xl grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">The Beginning</h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-4">
+      <section className="py-24 px-6 bg-white">
+        <div className="container mx-auto max-w-6xl grid md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-6 pr-0 md:pr-8">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">The Beginning</h2>
+            <div className="w-20 h-1.5 bg-[#F8E6EE] rounded-full"></div>
+            <p className="text-gray-600 text-lg leading-relaxed">
               It all began at a small craft table surrounded by jars of colorful beads. What
               started as a hobby quickly grew into a passion for creating wearable art that people
               could feel truly connected to.
@@ -80,18 +88,19 @@ export default function About() {
               just additions to an outfit — they are expressions of who you are.
             </p>
           </div>
-          {/* Decorative grid */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-[#FFF0F6] rounded-2xl h-48 flex items-center justify-center text-5xl shadow-sm">
+          
+          {/* Decorative grid with animations */}
+          <div className="grid grid-cols-2 gap-6 relative">
+            <div className="bg-[#FFF0F6] rounded-3xl h-56 flex items-center justify-center text-6xl shadow-sm hover:scale-105 hover:-rotate-6 transition-transform duration-500 cursor-default">
               🌸
             </div>
-            <div className="bg-[#EDE4FF] rounded-2xl h-48 flex items-center justify-center text-5xl shadow-sm mt-6">
+            <div className="bg-[#EDE4FF] rounded-3xl h-56 flex items-center justify-center text-6xl shadow-sm mt-12 hover:scale-105 hover:rotate-6 transition-transform duration-500 cursor-default">
               💜
             </div>
-            <div className="bg-[#E0F4FF] rounded-2xl h-48 flex items-center justify-center text-5xl shadow-sm">
+            <div className="bg-[#E0F4FF] rounded-3xl h-56 flex items-center justify-center text-6xl shadow-sm hover:scale-105 hover:-rotate-3 transition-transform duration-500 cursor-default">
               🪩
             </div>
-            <div className="bg-[#FFF4E6] rounded-2xl h-48 flex items-center justify-center text-5xl shadow-sm -mt-6">
+            <div className="bg-[#FFF4E6] rounded-3xl h-56 flex items-center justify-center text-6xl shadow-sm -mt-12 hover:scale-105 hover:rotate-3 transition-transform duration-500 cursor-default">
               ✨
             </div>
           </div>
@@ -99,20 +108,25 @@ export default function About() {
       </section>
 
       {/* Values Section */}
-      <section className="py-20 px-6 bg-[#FDF4FF]/50">
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">What We Stand For</h2>
-          <p className="text-center text-gray-500 mb-12 text-lg">
-            The values that shape every piece we create.
-          </p>
+      <section className="py-24 px-6 bg-gradient-to-b from-white to-[#FDF4FF]/50 relative">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">What We Stand For</h2>
+            <p className="text-gray-500 text-xl font-light">
+              The values that shape every piece we create.
+            </p>
+          </div>
+          
           <div className="grid md:grid-cols-3 gap-8">
             {values.map(value => (
               <div
                 key={value.title}
-                className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center hover:shadow-md transition"
+                className="group bg-white rounded-[2.5rem] p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-50 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500 text-center"
               >
-                <div className="text-5xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
+                <div className="w-20 h-20 mx-auto bg-gray-50 rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:scale-110 transition-transform duration-500">
+                  {value.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{value.title}</h3>
                 <p className="text-gray-600 leading-relaxed">{value.description}</p>
               </div>
             ))}
@@ -121,20 +135,26 @@ export default function About() {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 px-6 bg-white">
-        <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">From Bead to Beauty</h2>
-          <p className="text-center text-gray-500 mb-12 text-lg">
-            How each piece comes to life in four steps.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map(s => (
-              <div key={s.step}>
-                <div className="text-6xl font-black text-[#F8E6EE] select-none leading-none mb-3">
+      <section className="py-24 px-6 bg-white">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">From Bead to Beauty</h2>
+            <p className="text-gray-500 text-xl font-light">
+              How each piece comes to life in four steps.
+            </p>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16 relative">
+            {/* Optional connecting line for larger screens */}
+            <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-transparent via-[#F8E6EE] to-transparent z-0"></div>
+            
+            {steps.map((s, idx) => (
+              <div key={s.step} className="relative z-10 flex flex-col items-center lg:items-start text-center lg:text-left group">
+                <div className="text-7xl font-black text-[#F8E6EE] select-none leading-none mb-6 group-hover:text-manolya-purple/20 transition-colors duration-500">
                   {s.step}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{s.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{s.desc}</p>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">{s.title}</h3>
+                <p className="text-gray-600 text-base leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -142,15 +162,19 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-gradient-to-r from-manolya-purple to-purple-700">
-        <div className="container mx-auto max-w-3xl text-center text-white">
-          <h2 className="text-4xl font-bold mb-4">Ready to Find Your Piece?</h2>
-          <p className="text-purple-100 text-lg mb-8">
+      <section className="py-24 px-6 bg-gradient-to-r from-manolya-purple to-purple-700 relative overflow-hidden">
+        {/* Decorative background blur objects */}
+        <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-black/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+        
+        <div className="container relative z-10 mx-auto max-w-3xl text-center text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Ready to Find Your Piece?</h2>
+          <p className="text-purple-100 text-xl mb-10 font-light leading-relaxed">
             Each item is made to order and ships worldwide. Find the one that speaks to you.
           </p>
           <Link
             to="/shop"
-            className="inline-block bg-white text-manolya-purple font-bold px-8 py-4 rounded-xl hover:bg-purple-50 transition shadow-lg"
+            className="inline-block bg-white text-manolya-purple font-bold text-lg px-10 py-5 rounded-2xl hover:bg-purple-50 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] transition-all duration-300"
           >
             Shop the Collection
           </Link>
